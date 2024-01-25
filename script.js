@@ -16,6 +16,7 @@ document.querySelector('.btn--new').addEventListener('click', function () {
   if (!player1.classList.contains('player--active')) {
     changeActivePlayer()
   }
+  enableButtons()
 })
 
 //funcion para ir sumando la puntuacion
@@ -52,11 +53,32 @@ document.querySelector('.btn--hold').addEventListener('click', function () {
     scorePlayer1.textContent =
       Number(scorePlayer1.textContent) + Number(currentScore1.textContent)
     currentScore1.textContent = 0
-    changeActivePlayer()
+    if (Number(scorePlayer1.textContent) >= 100) {
+      document.getElementById('name--0').textContent = 'WINNER'
+      dissableButtons()
+    } else {
+      changeActivePlayer()
+    }
   } else {
     scorePlayer2.textContent =
       Number(scorePlayer2.textContent) + Number(currentScore2.textContent)
     currentScore2.textContent = 0
-    changeActivePlayer()
+    if (Number(scorePlayer2.textContent) >= 100) {
+      document.getElementById('name--1').textContent = 'WINNER'
+      dissableButtons()
+    } else {
+      changeActivePlayer()
+    }
   }
 })
+
+//funcion descativar botones
+function dissableButtons() {
+  document.querySelector('.btn--roll').disabled = true
+  document.querySelector('.btn--hold').disabled = true
+}
+//funcion activar botones
+function enableButtons() {
+  document.querySelector('.btn--roll').disabled = false
+  document.querySelector('.btn--hold').disabled = false
+}
