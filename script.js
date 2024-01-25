@@ -7,12 +7,15 @@ const currentScore1 = document.getElementById('current--0')
 const currentScore2 = document.getElementById('current--1')
 const dice = document.querySelector('.dice')
 
-//funcion para reiniciar valores a 0
+//evento para reiniciar valores a 0 y poner jugador 1 activo
 document.querySelector('.btn--new').addEventListener('click', function () {
   scorePlayer1.textContent = '0'
   scorePlayer2.textContent = '0'
   currentScore1.textContent = '0'
   currentScore2.textContent = '0'
+  if (!player1.classList.contains('player--active')) {
+    changeActivePlayer()
+  }
 })
 
 //funcion para ir sumando la puntuacion
@@ -43,16 +46,17 @@ document.querySelector('.btn--roll').addEventListener('click', function () {
   }
 })
 
-/*
+//evento terminar turno
 document.querySelector('.btn--hold').addEventListener('click', function () {
-  if (player1.classList.contains(playerActive)) {
+  if (player1.classList.contains('player--active')) {
     scorePlayer1.textContent =
       Number(scorePlayer1.textContent) + Number(currentScore1.textContent)
-    player1.classList.remove(playerActive)
+    currentScore1.textContent = 0
+    changeActivePlayer()
   } else {
     scorePlayer2.textContent =
-      scorePlayer2.textContent + currentScore2.textContent
-    player2.classList.remove(playerActive)
+      Number(scorePlayer2.textContent) + Number(currentScore2.textContent)
+    currentScore2.textContent = 0
+    changeActivePlayer()
   }
 })
-*/
