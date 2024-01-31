@@ -13,6 +13,7 @@ document.querySelector('.btn--new').addEventListener('click', function () {
   scorePlayer2.textContent = '0'
   currentScore1.textContent = '0'
   currentScore2.textContent = '0'
+  document.querySelector('.player--winner').classList.remove('player--winner')
   if (!player1.classList.contains('player--active')) {
     changeActivePlayer()
   }
@@ -54,7 +55,7 @@ document.querySelector('.btn--hold').addEventListener('click', function () {
       Number(scorePlayer1.textContent) + Number(currentScore1.textContent)
     currentScore1.textContent = 0
     if (Number(scorePlayer1.textContent) >= 100) {
-      document.getElementById('name--0').textContent = 'WINNER'
+      player1.classList.add('player--winner')
       dissableButtons()
     } else {
       changeActivePlayer()
@@ -64,8 +65,7 @@ document.querySelector('.btn--hold').addEventListener('click', function () {
       Number(scorePlayer2.textContent) + Number(currentScore2.textContent)
     currentScore2.textContent = 0
     if (Number(scorePlayer2.textContent) >= 100) {
-      document.getElementById('name--1').textContent = 'WINNER'
-      dissableButtons()
+      player2.classList.add('player--winner')
     } else {
       changeActivePlayer()
     }
